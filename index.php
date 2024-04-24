@@ -1,20 +1,12 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-
 <body>
+
     <div class="homeinet-top-container">
+
         <div id="mustblock" class="homeinet-top-left">
             <div class=""></div>
             <div id="card" style="perspective: 280px; position: relative;">
-                <div id="startStopBtn" onclick="startStop()" class="circle front"
-                    style="backface-visibility: hidden; transform-style: preserve-3d; position: absolute; z-index: 1; height: 100%; width: 100%; transition: 10.5s ease-out;">
-                  +
+                <div id="startStopBtn" onclick="startStop()" class="circle front">
+                    +
                 </div>
             </div>
         </div>
@@ -53,10 +45,7 @@
                 <div class="homeinet-top-right-3">
                     <div class="slide2-bottom">
                         <div class="slide2-arrow">
-                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16px" height="16px"
-                                version="1.1"
-                                style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd"
-                                viewBox="0 0 254 254" xmlns:xlink="http://www.w3.org/1999/xlink">
+                            <svg xmlns="http://www.w3.org/2000/svg" xml:space="preserve" width="16px" height="16px" version="1.1" style="shape-rendering:geometricPrecision; text-rendering:geometricPrecision; image-rendering:optimizeQuality; fill-rule:evenodd; clip-rule:evenodd" viewBox="0 0 254 254" xmlns:xlink="http://www.w3.org/1999/xlink">
                                 <defs>
                                     <style type="text/css">
                                         .fil0 {
@@ -66,14 +55,12 @@
                                     </style>
                                 </defs>
                                 <g id="Слой_x0020_1">
-                                    <path class="fil0"
-                                        d="M37 217c24,24 56,37 90,37 34,0 66,-13 90,-37 24,-24 37,-56 37,-90 0,-34 -13,-66 -37,-90 -24,-24 -56,-37 -90,-37 -34,0 -66,13 -90,37 -24,24 -37,56 -37,90 0,34 13,66 37,90zm20 -160c19,-18 44,-29 70,-29 26,0 51,11 70,29 19,19 29,44 29,70 0,26 -10,51 -29,70 -19,19 -44,29 -70,29 -26,0 -51,-10 -70,-29 -18,-19 -29,-44 -29,-70 0,-26 11,-51 29,-70zm56 16l-20 20 34 34 -34 34 20 20 54 -54 -54 -54z">
+                                    <path class="fil0" d="M37 217c24,24 56,37 90,37 34,0 66,-13 90,-37 24,-24 37,-56 37,-90 0,-34 -13,-66 -37,-90 -24,-24 -56,-37 -90,-37 -34,0 -66,13 -90,37 -24,24 -37,56 -37,90 0,34 13,66 37,90zm20 -160c19,-18 44,-29 70,-29 26,0 51,11 70,29 19,19 29,44 29,70 0,26 -10,51 -29,70 -19,19 -44,29 -70,29 -26,0 -51,-10 -70,-29 -18,-19 -29,-44 -29,-70 0,-26 11,-51 29,-70zm56 16l-20 20 34 34 -34 34 20 20 54 -54 -54 -54z">
                                     </path>
                                 </g>
                             </svg>
                         </div>
                         <script type="text/javascript">
-
                             function rubls() {
 
                                 //Скорость и стоимость в хтмл
@@ -104,15 +91,20 @@
                                     price.textContent = "400";
                                 };
                             };
+
                             function remover() {
                                 var startbutton = document.getElementById('mustblock');
                                 startbutton.classList.add("blockcontent")
                             };
+
                             function adder() {
                                 var startbutton = document.getElementById('mustblock');
                                 startbutton.classList.remove("blockcontent")
                             };
-                            function I(id) { return document.getElementById(id); }
+
+                            function I(id) {
+                                return document.getElementById(id);
+                            }
                             var price = document.getElementById('priceText');
                             var w = null; //speedtest worker
                             var parameters = { //custom test parameters. See doc.md for a complete list
@@ -123,6 +115,7 @@
                                 getIp_ispInfo: false, //will only get IP address without ISP info
                                 test_order: "D"
                             };
+
                             function startStop() {
                                 if (w != null) {
 
@@ -135,7 +128,7 @@
                                     remover();
                                     setTimeout(adder, 10800);
                                     setTimeout(rubls, 10500);
-                                    w.onmessage = function (e) {
+                                    w.onmessage = function(e) {
                                         var data = e.data.split(';');
                                         var status = Number(data[0]);
                                         if (status >= 4) {
@@ -149,7 +142,7 @@
                                 }
                             }
                             //poll the status from the worker every 200ms (this will also update the UI)
-                            setInterval(function () {
+                            setInterval(function() {
                                 if (w) w.postMessage('status');
                             }, 200);
                             //function to (re)initialize UI
@@ -160,5 +153,3 @@
                             initUI();
                         </script>
 </body>
-
-</html>
